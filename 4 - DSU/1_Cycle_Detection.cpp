@@ -49,7 +49,7 @@ private:
         {
             return i;
         }
-        return findSet(parent[i], parent);
+        return parent[i]=findSet(parent[i], parent);
     }
 
     void unionSet(int a, int b, vector<int> &parent)

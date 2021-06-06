@@ -19,17 +19,17 @@ public:
         l[v].push_back(u);
     }
 
-    void euler_tour_1(int node, int parent)
+    void euler_tour_2(int node, int parent)
     {
         cout << node << " ";
         for (auto nbr : l[node])
         {
             if (nbr != parent)
             {
-                euler_tour_1(nbr, node);
-                cout << node << " ";
+                euler_tour_2(nbr, node);
             }
         }
+        cout << node << " ";
     }
 };
 
@@ -49,6 +49,5 @@ int main()
         g.addEdge(u, v);
     }
 
-    g.euler_tour_1(1, -1);
-    
+    g.euler_tour_2(1, -1);
 }

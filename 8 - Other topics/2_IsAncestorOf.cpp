@@ -40,7 +40,7 @@ public:
     {
         int timer = 0;
         euler_tour(1, -1, timer = 0);
-        return time_in[parent] <= time_in[child] and time_out[parent] > -time_out[child];
+        return time_in[parent] <= time_in[child] and time_out[parent] >= time_out[child];
     }
 };
 

@@ -32,7 +32,11 @@ public:
         buildTree(a, s, mid, 2 * idx);
         buildTree(a, mid + 1, e, 2 * idx + 1);
 
-        tree[idx] = min(tree[2 * idx], tree[2 * idx + 1]);
+        tree[idx] = logic(tree[2 * idx], tree[2 * idx + 1]);
+    }
+
+    int logic(int a, int b){
+        return min(a,b);
     }
 
     void printTree()

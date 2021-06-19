@@ -14,6 +14,11 @@ private:
     }
 
 public:
+    SegmentTree()
+    {
+        //Empty constructor necessary
+    }
+
     SegmentTree(int n)
     {
         size = n;
@@ -46,7 +51,6 @@ public:
         tree[idx] = logic(tree[2 * idx], tree[2 * idx + 1]);
     }
 
-
     int query(int qs, int qe)
     {
         return query(0, size - 1, qs, qe, 1);
@@ -70,6 +74,31 @@ public:
         return logic(left, right);
     }
 
+    void updateNode(int ss, int se, int i, int inc, int idx)
+    {
+        //case when i is out of bounds
+        if (i < ss or i > se)
+            return;
+
+        if (ss == se)
+        {
+            tree[idx] += inc;
+            return;
+        }
+
+        int mid = ss + (se - ss) / 2;
+
+        updateNode(ss, mid, i, inc, 2 * idx);
+        updateNode(mid + 1, se, i, inc, 2 * idx + 1);
+
+        tree[idx] = logic(tree[2 * idx], tree[2 * idx + 1]);
+    }
+
+    void updateNode(int idx, int inc)
+    {
+        updateNode(0, size - 1, idx, inc, 1);
+    }
+
     void printTree()
     {
         for (int x : tree)
@@ -88,5 +117,7 @@ int main()
     segmentTree.buildTree(a);
     //segmentTree.printTree();
 
-    cout << segmentTree.query(0,2);
+    cout << segmentTree.query(0, 2) << endl;
+    segmentTree.updateNode(1, -10);
+    cout << segmentTree.query(0, 2) << endl;
 }

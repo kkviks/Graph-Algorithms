@@ -20,6 +20,10 @@ public:
         }
     }
 
+    void buildTree(vector<int> const &a){
+        buildTree(a,0,a.size()-1,1);
+    }
+
     void buildTree(vector<int> const &a, int s, int e, int idx)
     {
         if (s == e)
@@ -54,6 +58,6 @@ int main()
     int n = a.size();
 
     SegmentTree segmentTree(n);
-    segmentTree.buildTree(a, 0, n - 1, 1);
+    segmentTree.buildTree(a);
     segmentTree.printTree();
 }
